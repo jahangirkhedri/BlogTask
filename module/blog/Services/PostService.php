@@ -14,9 +14,9 @@ class PostService implements PostServiceInterface
         $this->postRepository = $postRepository;
     }
 
-    public function all()
+    public function all($userId)
     {
-        return $this->postRepository->all();
+        return $this->postRepository->allUserPostsPaginated($userId);
     }
 
     public function getById($id)
@@ -34,8 +34,5 @@ class PostService implements PostServiceInterface
         return $this->postRepository->update($id, $data);
     }
 
-    public function delete($id)
-    {
-        return $this->postRepository->delete($id);
-    }
+
 }
