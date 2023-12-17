@@ -15,12 +15,16 @@ Route::group(['prefix' => 'posts', 'as' => 'posts.'], function () {
         Route::delete('{post}', [PostController::class, 'destroy'])->name('destroy');
     });
 
-    Route::group(['middleware'=>'can:author'],function (){
+    Route::group(['middleware' => 'can:author'], function () {
         Route::get('create', [PostController::class, 'create'])->name('create');
         Route::post('/', [PostController::class, 'store'])->name('store');
-        Route::get('{post}/edit', [PostController::class, 'edit'])->name('edit');
-        Route::patch('{post}', [PostController::class, 'update'])->name('update');
-        Route::get('{post}', [PostController::class, 'show'])->name('show');
+
+        Route::group(['middleware' => 'userPosts'], function () {
+            Route::get('{post}/edit', [PostController::class, 'edit'])->name('edit');
+            Route::patch('{post}', [PostController::class, 'update'])->name('update');
+            Route::get('{post}', [PostController::class, 'show'])->name('show');
+        });
+
     });
 
     Route::get('/', [PostController::class, 'index'])->name('index');

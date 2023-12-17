@@ -26,7 +26,7 @@ class PostRepository extends Repository
 
     public function findTrashed($id)
     {
-        return Post::onlyTrashed()->where('id',$id)->first();
+        return Post::onlyTrashed()->where('id',$id)->firstOrFail();
     }
 
     public function restore($post)
