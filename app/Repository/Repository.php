@@ -19,7 +19,7 @@ abstract class Repository
         return $this->model->orderBy('id', 'desc')->get();
     }
 
-    public function paginate($limit = 15)
+    public function paginate($limit = 5)
     {
         return $this->model->orderBy('id', 'desc')->paginate($limit);
     }

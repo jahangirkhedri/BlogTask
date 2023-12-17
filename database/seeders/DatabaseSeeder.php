@@ -4,6 +4,11 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Module\acl\Databases\Seeders\RoleSeeder;
+use Module\acl\Model\Role;
+use Module\blog\Databases\Seeders\PostSeeder;
+use Module\blog\Models\Post;
+use Module\user\Databases\Seeders\UserSeeder;
 
 class DatabaseSeeder extends Seeder
 {
@@ -12,11 +17,9 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // \App\Models\User::factory(10)->create();
+        resolve(RoleSeeder::class)->run();
+        resolve(UserSeeder::class)->run();
+        resolve(PostSeeder::class)->run();
 
-        // \App\Models\User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        // ]);
     }
 }

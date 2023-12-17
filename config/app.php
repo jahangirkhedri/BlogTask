@@ -172,7 +172,8 @@ return [
         // modules providers
 
         \Module\user\UserModuleProvider::class,
-        \Module\blog\BlogModuleProvider::class
+        \Module\blog\BlogModuleProvider::class,
+        \Module\acl\AclModuleProvider::class,
     ])->toArray(),
 
     /*

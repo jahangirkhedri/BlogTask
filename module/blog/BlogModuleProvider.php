@@ -27,7 +27,7 @@ class BlogModuleProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        Route::middleware('web')
+        Route::middleware(['web','auth'])
             ->namespace($this->routeNamespaces)
             ->group(__DIR__ . "/routes/routes.php");
     }

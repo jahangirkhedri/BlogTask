@@ -14,8 +14,11 @@ class PostService implements PostServiceInterface
         $this->postRepository = $postRepository;
     }
 
-    public function all($userId)
+    public function all()
     {
+        return $this->postRepository->paginate();
+    }
+    public function allUSerPosts($userId){
         return $this->postRepository->allUserPostsPaginated($userId);
     }
 

@@ -18,7 +18,13 @@ class PostController extends Controller
 
     public function index()
     {
-        $posts = $this->postService->all(Auth::id());
+        $user = Auth::user();
+        if($user->is_admin){
+            $posts = $this->postService->all();
+        }else{
+            $posts = $this->postService->allUSerPosts($user->id);
+        }
+
         return view('blog::index', compact('posts'));
     }
 

@@ -4,7 +4,8 @@ namespace Module\blog\Contracts;
 
 interface PostServiceInterface
 {
-    public function all($userId);
+    public function all();
+    public function allUSerPosts($userId);
 
     public function getById($id);
 

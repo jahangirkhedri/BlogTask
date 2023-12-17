@@ -14,7 +14,9 @@
                         <th scope="col">title</th>
                         <th scope="col">status</th>
                         <th scope="col">user</th>
+                        @can('admin')
                         <th scope="col">change Status</th>
+                        @endcan
                         <th scope="col">actions</th>
                     </tr>
                     </thead>
@@ -25,25 +27,35 @@
                             <td>{{$post->title}}</td>
                             <td>{{$post->status_name}}</td>
                             <td>{{$post->user->name}}</td>
+                            @can('admin')
                             <td>
                                 <a href="{{route('posts.changeStatus',$post->id)}}">
                                     <i class="fa fa-refresh"></i>
                                 </a>
                             </td>
-
+                            @endcan
                             <td>
-                                <a href="{{route('posts.edit',$post->id)}}"><i class="fa fa-pencil"></i></a>
-                                <a href="{{route('posts.show',$post->id)}}"><i class="fa fa-eye"></i></a>
-                                <form action="{{route('posts.destroy',$post->id)}}" method="post">
-                                    @method('DELETE')
-                                    @csrf
-                                    <button type="submit" class="btn btn-sm delete" id="delete" ><i class="fa fa-trash danger"></i></button>
-                                </form>
+                                @can('author')
+                                    <a href="{{route('posts.edit',$post->id)}}"><i class="fa fa-pencil"></i></a>
+                                    <a href="{{route('posts.show',$post->id)}}"><i class="fa fa-eye"></i></a>
+                                @endcan
+
+
+                                    @can('admin')
+                                        <form action="{{route('posts.destroy',$post->id)}}" method="post">
+                                            @method('DELETE')
+                                            @csrf
+                                            <button type="submit" class="btn btn-sm delete" id="delete"><i
+                                                    class="fa fa-trash danger"></i></button>
+                                        </form>
+                                    @endcan
                             </td>
                         </tr>
                     @endforeach
                     </tbody>
+
                 </table>
+                {{$posts->render()}}
             </div>
         </div>
     </div>
