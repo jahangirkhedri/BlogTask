@@ -41,7 +41,7 @@ class PostController extends Controller
     public function show($id)
     {
         $post = $this->postService->getById($id);
-        return view('posts.show', compact('post'));
+        return view('blog::show', compact('post'));
     }
 
 
