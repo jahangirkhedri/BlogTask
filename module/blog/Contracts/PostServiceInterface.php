@@ -12,4 +12,12 @@ interface PostServiceInterface
 
     public function update($id, $data);
 
+    public function delete($id);
+
+    public function trash();
+
+    public function restore($id);
+
+    public function changeStatus($id);
+
 }

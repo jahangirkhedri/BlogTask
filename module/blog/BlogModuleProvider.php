@@ -16,7 +16,7 @@ class BlogModuleProvider extends ServiceProvider
      */
     public function register(): void
     {
-        $this->loadMigrationsFrom(__DIR__ . '/Database/migrations');
+        $this->loadMigrationsFrom(__DIR__ . '/Databases/migrations');
         $this->loadViewsFrom(__DIR__.'/Resources/views','blog');
         App::bind(PostServiceInterface::class,PostService::class);
 

@@ -31,8 +31,30 @@ class PostService implements PostServiceInterface
 
     public function update($id, $data)
     {
-        return $this->postRepository->update($id, $data);
+        $post = $this->postRepository->find($id);
+        return $this->postRepository->update($post, $data);
     }
 
+    public function delete($id)
+    {
+        return $this->postRepository->delete($id);
+    }
+
+    public function trash()
+    {
+        return $this->postRepository->trash();
+    }
+
+    public function restore($id)
+    {
+        $post = $this->postRepository->findTrashed($id);
+        return $this->postRepository->restore($post);
+    }
+
+    public function changeStatus($id)
+    {
+        $post = $this->postRepository->find($id);
+        return $this->postRepository->changeStatus($post);
+    }
 
 }

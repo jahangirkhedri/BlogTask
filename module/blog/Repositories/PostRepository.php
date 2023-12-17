@@ -18,9 +18,26 @@ class PostRepository extends Repository
         return Post::where('user_id', $userId)->paginate($limit);
     }
 
-    public function changeStatus($id, $status){
-       return Post::where('id',$id)->update([
-           'status' => $status
-       ]) ;
+
+    public function trash($limit = 15)
+    {
+        return Post::onlyTrashed()->paginate($limit);
+    }
+
+    public function findTrashed($id)
+    {
+        return Post::onlyTrashed()->where('id',$id)->first();
+    }
+
+    public function restore($post)
+    {
+        return $post->restore();
+    }
+
+    public function changeStatus($post)
+    {
+        return $post->update([
+            'status' => !$post->status
+        ]);
     }
 }

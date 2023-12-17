@@ -15,10 +15,11 @@ return new class extends Migration
             $table->id();
             $table->string('title',255);
             $table->text('content');
-            $table->integer(1)->default(0)->comment("0 => draft , 2 => published");
+            $table->integer('status')->default(0)->comment("0 => draft , 2 => published");
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

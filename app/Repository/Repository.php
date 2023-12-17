@@ -4,6 +4,14 @@ namespace App\Repository;
 
 abstract class Repository
 {
+    protected $model;
+
+    // ...
+
+    public function __construct()
+    {
+        $this->model = app($this->model());
+    }
     abstract public function model();
 
     public function all()
@@ -37,9 +45,10 @@ abstract class Repository
         return $model->update($data);
     }
 
-    public function delete($model)
+    public function delete($id)
     {
-        return $model->delete();
+       $m = $this->find($id);
+        return $m->delete();
     }
 
     public function exists($id)
