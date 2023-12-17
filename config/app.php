@@ -170,7 +170,9 @@ return [
         App\Providers\RouteServiceProvider::class,
 
         // modules providers
+
         \Module\user\UserModuleProvider::class,
+        \Module\blog\BlogModuleProvider::class
     ])->toArray(),
 
     /*
