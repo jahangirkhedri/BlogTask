@@ -16,6 +16,7 @@ abstract class Repository
         return $this->model->orderBy('id', 'desc')->paginate($limit);
     }
 
+
     public function getBy($col, $value, $limit = 15)
     {
         return $this->model->where($col, $value)->limit($limit)->get();

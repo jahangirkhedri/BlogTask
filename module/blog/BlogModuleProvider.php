@@ -2,8 +2,11 @@
 
 namespace Module\blog;
 
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
+use Module\blog\Contracts\PostServiceInterface;
+use Module\blog\Services\PostService;
 
 class BlogModuleProvider extends ServiceProvider
 {
@@ -15,6 +18,7 @@ class BlogModuleProvider extends ServiceProvider
     {
         $this->loadMigrationsFrom(__DIR__ . '/Database/migrations');
         $this->loadViewsFrom(__DIR__.'/Resources/views','blog');
+        App::bind(PostServiceInterface::class,PostService::class);
 
     }
 
