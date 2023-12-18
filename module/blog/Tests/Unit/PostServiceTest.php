@@ -99,4 +99,16 @@ class PostServiceTest extends TestCase
         $this->assertEquals($post->id,$restoredPost->id);
 
     }
+
+    public function test_change_status()
+    {
+        $user = User::factory()->create();
+        $post = Post::factory()->user($user->id)->create();
+
+        $updatePostStatus = $this->postService->changeStatus($post->id);
+        $updatedPost = $this->postService->getById($post->id);
+
+        $this->assertTrue($updatePostStatus);
+        $this->assertEquals(1,$updatedPost->status);
+    }
 }
