@@ -12,14 +12,16 @@ class RoleSeeder extends Seeder
      */
     public function run(): void
     {
-        Role::create([
-            'slug' => Role::ADMIN_ROLE,
-            'title' => 'admin'
-        ]);
-        Role::create([
-            'slug' => Role::AUTHOR_ROLE,
-            'title' => 'author'
-        ]);
+        if(!Role::count()){
+            Role::create([
+                'slug' => Role::ADMIN_ROLE,
+                'title' => 'admin'
+            ]);
+            Role::create([
+                'slug' => Role::AUTHOR_ROLE,
+                'title' => 'author'
+            ]);
+        }
 
 
     }

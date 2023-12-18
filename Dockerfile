@@ -32,16 +32,16 @@ RUN apt-get clean && rm -rf /var/lib/apt/lists/*
 RUN docker-php-ext-install pdo_mysql mbstring zip exif pcntl soap sockets bcmath
 RUN docker-php-ext-configure gd -with-freetype --with-jpeg
 RUN docker-php-ext-install gd
-RUN pecl install -o -f redis \
-  &&  rm -rf /tmp/pear \
-  &&  docker-php-ext-enable redis
+#RUN pecl install -o -f redis \
+#  &&  rm -rf /tmp/pear \
+#  &&  docker-php-ext-enable redis
 
 # Install composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
 # Add user for laravel application
-RUN groupadd -g 1000 www
-RUN useradd -u 1000 -ms /bin/bash -g www www
+#RUN groupadd -g 1000 www
+#RUN useradd -u 1000 -ms /bin/bash -g www www
 
 # Copy existing application directory contents
 COPY . /var/www
@@ -50,7 +50,7 @@ COPY . /var/www
 COPY --chown=www:www . /var/www
 
 # Change current user to www
-USER www
+#USER www
 
 # Expose port 9000 and start php-fpm server
 EXPOSE 9000

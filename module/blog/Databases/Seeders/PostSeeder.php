@@ -14,14 +14,16 @@ class PostSeeder extends Seeder
      */
     public function run(): void
     {
-        $faker = Faker::create();
-        $user = User::first();
-        for($i=0;$i<8;$i++){
-            Post::create([
-                "user_id" => $user->id,
-                'title' => $faker->realText(100),
-                'content' => $faker->realText
-            ]);
+        if(!Post::count()){
+            $faker = Faker::create();
+            $user = User::first();
+            for($i=0;$i<8;$i++){
+                Post::create([
+                    "user_id" => $user->id,
+                    'title' => $faker->realText(100),
+                    'content' => $faker->realText
+                ]);
+            }
         }
 
     }

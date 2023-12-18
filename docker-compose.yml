@@ -49,6 +49,8 @@ services:
     environment:
       MYSQL_DATABASE: blog
       MYSQL_ROOT_PASSWORD: root
+      MYSQL_USER: blog
+      MYSQL_PASSWORD: 123456
       SERVICE_TAGS: dev
       SERVICE_NAME: mysql
       TZ: Asia/Tehran
