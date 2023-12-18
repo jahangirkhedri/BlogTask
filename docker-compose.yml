@@ -57,6 +57,21 @@ services:
     networks:
       - app-network
 
+  testdb:
+      container_name: testdb
+      image: mariadb:10.5
+      tmpfs: /var/lib/mysql
+      ports:
+          - "3310:3306"
+      environment:
+         MYSQL_ROOT_PASSWORD: root
+         MYSQL_PASSWORD: 123456
+         MYSQL_DATABASE: blog_test
+         MYSQL_USER: blog_test
+      restart: always
+      networks:
+          - app-network
+
   pma:
     depends_on:
       - db

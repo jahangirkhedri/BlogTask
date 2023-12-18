@@ -13,10 +13,11 @@ docker exec app composer install
 echo  "clear cache"
 docker exec app php artisan cache:clear
 docker exec app php artisan key:generate
-docker exec app php artisan optimize
 
 echo "run migrations and seeder"
 docker exec app php artisan migrate --seed
 
+docker exec app php artisan optimize:clear
 sudo chown -R www-data:www-data storage/
+
 
