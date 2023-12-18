@@ -9,7 +9,7 @@
                         <form action="{{ route('posts.store') }}" method="post">
                             @csrf
                             <div class="form-floating mb-3">
-                                <input class="form-control" id="title" name="title" type="text" placeholder="Post title" />
+                                <input class="form-control" id="title" name="title" value="{{old('title')}}" type="text" placeholder="Post title" />
                                 <label for="title"> Post title</label>
                                 @error('title')
                                 <span class="invalid-feedback" role="alert">
@@ -18,8 +18,8 @@
                                 @enderror
                             </div>
                             <div class="form-floating mb-3">
-                                <textarea  id="content" class="form-control" rows="30" name="content"></textarea>
-                                <label for="title"> Post content</label>
+                                <textarea  id="content" class="form-control" rows="30" name="content">{{old('content')}}</textarea>
+                                <label for="content"> Post content</label>
                                 @error('content')
                                 <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>

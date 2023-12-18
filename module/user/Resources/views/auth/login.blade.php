@@ -23,7 +23,7 @@
                                         <form action="{{ route('login') }}" method="post">
                                             @csrf
                                             <div class="form-floating mb-3">
-                                                <input class="form-control" id="inputEmail" name="email" type="email" placeholder="name@example.com" />
+                                                <input class="form-control" id="inputEmail" name="email" value="{{old('email')}}" type="email" placeholder="name@example.com" />
                                                 <label for="inputEmail">Email address</label>
                                                 @error('email')
                                                 <span class="invalid-feedback" role="alert">
@@ -39,6 +39,9 @@
                                         <strong>{{ $message }}</strong>
                                     </span>
                                                 @enderror
+                                            </div>
+                                            <div class="d-flex align-items-center justify-content-between mt-4 mb-0">
+                                                <button type="submit" class="btn btn-primary" >Login</button>
                                             </div>
                                             <div class="form-check mb-3">
                                                 <input class="form-check-input" id="inputRememberPassword" type="checkbox" value="" />
