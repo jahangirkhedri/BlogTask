@@ -16,6 +16,7 @@
     display: block;
 }
 svg {
+
     height: 14px;
 }
 </style>
@@ -99,6 +100,14 @@ svg {
         title: 'Success!',
         text: '{{session()->get('success')}}',
         icon: 'success',
+    });
+    @endif
+
+    @if(session()->has('error'))
+    Swal.fire({
+        title: 'Failed!',
+        text: '{{session()->get('error')}}',
+        icon: 'danger',
     });
     @endif
 </script>

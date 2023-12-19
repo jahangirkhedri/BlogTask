@@ -35,8 +35,13 @@ class PostController extends Controller
 
     public function store(StorePostFormRequest $request)
     {
-        $this->postService->create($request->only(['title','content','user_id']));
-        return back()->with('success',"Post created successfully!");
+        try {
+            $this->postService->create($request->only(['title','content','user_id']));
+            return back()->with('success',"Post created successfully!");
+        }catch (\Exception $e){
+            return back()->with('error',"Error! something went Wrong");
+        }
+
     }
     public function show($id)
     {
@@ -53,33 +58,54 @@ class PostController extends Controller
 
     public function update(UpdatePostFormRequest $request, $id)
     {
+        try {
         $this->postService->update($id, $request->only(['title','content']));
 
         return back()->with('success', 'Post updated successfully!');
+        }catch (\Exception $e){
+            return back()->with('error',"Error! something went Wrong");
+        }
     }
+
     public function destroy($id)
     {
-        $this->postService->delete($id);
+        try {
 
-        return back()->with('success', 'Post deleted successfully!');
+            $this->postService->delete($id);
+            return back()->with('success', 'Post deleted successfully!');
+
+        } catch (\Exception $e) {
+            return back()->with('error', "Error! something went Wrong");
+        }
     }
 
     public function trash()
     {
-        $posts = $this->postService->trash();
-        return view('blog::trash', compact('posts'));
+        try {
+            $posts = $this->postService->trash();
+            return view('blog::trash', compact('posts'));
+        } catch (\Exception $e) {
+            return back()->with('error', "Error! something went Wrong");
+        }
     }
 
     public function restore($id)
     {
-        $this->postService->restore($id);
-        return back()->with('success', 'Post restored successfully!');
+        try {
+            $this->postService->restore($id);
+            return back()->with('success', 'Post restored successfully!');
+        } catch (\Exception $e) {
+            return back()->with('error', "Error! something went Wrong");
+        }
     }
 
     public function changeStatus($id)
     {
-        $this->postService->changeStatus($id);
-
-        return back()->with('success', 'Status changed successfully!');
+        try {
+            $this->postService->changeStatus($id);
+            return back()->with('success', 'Status changed successfully!');
+        } catch (\Exception $e) {
+            return back()->with('error', "Error! something went Wrong");
+        }
     }
 }
