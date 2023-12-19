@@ -40,4 +40,9 @@ class PostRepository extends Repository
             'status' => !$post->status
         ]);
     }
+
+    public function paginate($limit = 5)
+    {
+        return Post::with('user')->orderBy('id', 'desc')->paginate($limit);
+    }
 }
