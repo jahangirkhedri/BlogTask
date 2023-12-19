@@ -20,3 +20,15 @@ password : 123456
 email : author@gmail.com
 
 password : 123456
+
+# Tests
+Run this command for run tests
+
+`docker exec app php artisan test`
+
+# Code
+
+we have 3 module in this project
+- user : for authentication
+- acl : for assign role to users
+- blog : for posts
